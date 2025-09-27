@@ -79,7 +79,7 @@ export default function NavBar() {
                           />
                         </span>
                       </Button>
-                      {openMenuId === n.id.toString() && (
+                      {openMenuId === n.id.toString() && n.items && (
                         <div
                           className={`absolute left-0 -bottom-14 min-h-14 w-full bg-background border-b shadow-lg flex items-center justify-center`}
                         >
@@ -180,7 +180,7 @@ export default function NavBar() {
                                 </AccordionTrigger>
                                 <AccordionContent>
                                   <ul>
-                                    {n.items.map((i) => (
+                                    {n.items?.map((i) => (
                                       <li key={i.id}>
                                         <SheetClose asChild>
                                           <Button
