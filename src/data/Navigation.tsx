@@ -1,6 +1,12 @@
 export const NAVIGATION_BAR = [
   {
     id: 1,
+    name: "Dashboard",
+    value: "https://dashboard.metacces.com",
+    isStandalone: true,
+  },
+  {
+    id: 2,
     name: "About Us",
     items: [
       {
@@ -11,7 +17,7 @@ export const NAVIGATION_BAR = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: "Network",
     items: [
       {
@@ -22,7 +28,7 @@ export const NAVIGATION_BAR = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     name: "Contact Us",
     items: [
       {

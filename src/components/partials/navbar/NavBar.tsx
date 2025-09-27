@@ -59,34 +59,42 @@ export default function NavBar() {
             <ul className="flex items-center justify-center space-x-4">
               {NAVIGATION_BAR.map((n) => (
                 <li key={n.id}>
-                  <Button
-                    variant={"link"}
-                    onClick={() => toggleMenu(n.id.toString())}
-                    className={`flex items-center gap-2`}
-                  >
-                    <span>{n.name}</span>
-                    <span>
-                      <Triangle
-                        className={`fill-foreground size-2 transition-all ${
-                          openMenuId === n.id.toString() && "rotate-180"
-                        }`}
-                      />
-                    </span>
-                  </Button>
-                  {openMenuId === n.id.toString() && (
-                    <div
-                      className={`absolute left-0 -bottom-14 min-h-14 w-full bg-background border-b shadow-lg flex items-center justify-center`}
-                    >
-                      <ul className={`flex items-center justify-center gap-2`}>
-                        {n.items.map((item) => (
-                          <li key={item.id}>
-                            <Button variant={"ghost"} asChild>
-                              <Link href={item.value}>{item.name}</Link>
-                            </Button>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {n.isStandalone ? (
+                    <Button variant={"link"} asChild>
+                      <Link href={n.value}>{n.name}</Link>
+                    </Button>
+                  ) : (
+                    <>
+                      <Button
+                        variant={"link"}
+                        onClick={() => toggleMenu(n.id.toString())}
+                        className={`flex items-center gap-2`}
+                      >
+                        <span>{n.name}</span>
+                        <span>
+                          <Triangle
+                            className={`fill-foreground size-2 transition-all ${
+                              openMenuId === n.id.toString() && "rotate-180"
+                            }`}
+                          />
+                        </span>
+                      </Button>
+                      {openMenuId === n.id.toString() && (
+                        <div
+                          className={`absolute left-0 -bottom-14 min-h-14 w-full bg-background border-b shadow-lg flex items-center justify-center`}
+                        >
+                          <ul className={`flex items-center justify-center gap-2`}>
+                            {n.items.map((item) => (
+                              <li key={item.id}>
+                                <Button variant={"ghost"} asChild>
+                                  <Link href={item.value}>{item.name}</Link>
+                                </Button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>
                   )}
                 </li>
               ))}
@@ -143,44 +151,58 @@ export default function NavBar() {
                     <ul className={`flex flex-col gap-6 w-full`}>
                       {NAVIGATION_BAR.map((n) => (
                         <li key={n.id} className={`w-full`}>
-                          <Accordion
-                            type="single"
-                            collapsible
-                            className={`w-full`}
-                          >
-                            <AccordionItem
-                              value={`${n.name}`}
-                              className={`w-full `}
-                            >
-                              <AccordionTrigger
-                                className={`rounded-full text-3xl font-semibold text-foreground w-full focus:outline-none`}
+                          {n.isStandalone ? (
+                            <SheetClose asChild>
+                              <Button
+                                variant={"link"}
+                                className={`text-3xl font-semibold text-foreground w-full flex items-center justify-start focus:outline-none`}
+                                asChild
                               >
-                                {n.name}
-                              </AccordionTrigger>
-                              <AccordionContent>
-                                <ul>
-                                  {n.items.map((i) => (
-                                    <li key={i.id}>
-                                      <SheetClose asChild>
-                                        <Button
-                                          variant={"link"}
-                                          className={`text-xl font-semibold text-foreground w-fullflex items-center justify-start focus:outline-none`}
-                                          asChild
-                                        >
-                                          <Link
-                                            href={`${i.value}`}
-                                            className={`w-full`}
+                                <Link href={n.value} className={`w-full`}>
+                                  {n.name}
+                                </Link>
+                              </Button>
+                            </SheetClose>
+                          ) : (
+                            <Accordion
+                              type="single"
+                              collapsible
+                              className={`w-full`}
+                            >
+                              <AccordionItem
+                                value={`${n.name}`}
+                                className={`w-full `}
+                              >
+                                <AccordionTrigger
+                                  className={`rounded-full text-3xl font-semibold text-foreground w-full focus:outline-none`}
+                                >
+                                  {n.name}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                  <ul>
+                                    {n.items.map((i) => (
+                                      <li key={i.id}>
+                                        <SheetClose asChild>
+                                          <Button
+                                            variant={"link"}
+                                            className={`text-xl font-semibold text-foreground w-fullflex items-center justify-start focus:outline-none`}
+                                            asChild
                                           >
-                                            {i.name}
-                                          </Link>
-                                        </Button>
-                                      </SheetClose>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </AccordionContent>
-                            </AccordionItem>
-                          </Accordion>
+                                            <Link
+                                              href={`${i.value}`}
+                                              className={`w-full`}
+                                            >
+                                              {i.name}
+                                            </Link>
+                                          </Button>
+                                        </SheetClose>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </Accordion>
+                          )}
                         </li>
                       ))}
                     </ul>
