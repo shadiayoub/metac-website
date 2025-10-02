@@ -5,7 +5,7 @@ import Partners from "@/components/pages/home/Partners";
 import Skins from "@/components/pages/home/Skins";
 import RoadMap from "@/components/pages/home/RoadMap";
 import FAQ from "@/components/pages/home/FAQ";
-import PreSaleCountdown from "@/components/pages/home/PreSaleCountdown";
+import ExchangeListings from "@/components/pages/home/ExchangeListings";
 import MainLayout from "@/components/layouts/MainLayout";
 import Page from "@/components/layouts/Page";
 import ScrollAnimatedCircle from "@/components/animation/FloatingCircle";
@@ -47,7 +47,7 @@ export default function Home() {
         <MainHeader />
       </Page>
       <Page circlePosition={pcPositions[1]}>
-        <PreSaleCountdown />
+        <ExchangeListings />
       </Page>
       <Page circlePosition={pcPositions[2]}>
         <AppDownload />

@@ -48,20 +48,22 @@ export default function NavBar() {
         className={`h-20 border-b w-full hidden md:flex items-center justify-center sticky top-0 left-0 bg-background/90 backdrop-blur-md z-50 relative `}
       >
         <div
-          className={`container mx-auto flex items-center justify-between w-full`}
+          className={`container mx-auto flex items-center justify-center w-full`}
         >
-          <Link href={"/"} className={`h-20`}>
-            <Icons.textLogo
-              className={`h-full w-auto aspect-video object-contain fill-foreground`}
-            />
-          </Link>
+          <div className="absolute left-0">
+            <Link href={"/"} className={`h-20`}>
+              <Icons.textLogo
+                className={`h-full w-auto aspect-video object-contain fill-foreground`}
+              />
+            </Link>
+          </div>
           <div>
             <ul className="flex items-center justify-center space-x-4">
               {NAVIGATION_BAR.map((n) => (
                 <li key={n.id}>
-                  {n.isStandalone ? (
+                  {n.directLink ? (
                     <Button variant={"link"} asChild>
-                      <Link href={n.value}>{n.name}</Link>
+                      <a href={n.directLink}>{n.name}</a>
                     </Button>
                   ) : (
                     <>
@@ -79,7 +81,7 @@ export default function NavBar() {
                           />
                         </span>
                       </Button>
-                      {openMenuId === n.id.toString() && n.items && (
+                      {openMenuId === n.id.toString() && (
                         <div
                           className={`absolute left-0 -bottom-14 min-h-14 w-full bg-background border-b shadow-lg flex items-center justify-center`}
                         >
@@ -100,7 +102,7 @@ export default function NavBar() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="hidden">
             <Dialog>
               <DialogTrigger asChild>
                 <CustomButton>Buy Acces</CustomButton>
@@ -151,16 +153,16 @@ export default function NavBar() {
                     <ul className={`flex flex-col gap-6 w-full`}>
                       {NAVIGATION_BAR.map((n) => (
                         <li key={n.id} className={`w-full`}>
-                          {n.isStandalone ? (
+                          {n.directLink ? (
                             <SheetClose asChild>
                               <Button
                                 variant={"link"}
                                 className={`text-3xl font-semibold text-foreground w-full flex items-center justify-start focus:outline-none`}
                                 asChild
                               >
-                                <Link href={n.value} className={`w-full`}>
+                                <a href={n.directLink} className={`w-full`}>
                                   {n.name}
-                                </Link>
+                                </a>
                               </Button>
                             </SheetClose>
                           ) : (
@@ -180,7 +182,7 @@ export default function NavBar() {
                                 </AccordionTrigger>
                                 <AccordionContent>
                                   <ul>
-                                    {n.items?.map((i) => (
+                                    {n.items.map((i) => (
                                       <li key={i.id}>
                                         <SheetClose asChild>
                                           <Button
@@ -207,7 +209,7 @@ export default function NavBar() {
                       ))}
                     </ul>
                   </SheetDescription>
-                  <SheetFooter className={"w-full"}>
+                  <SheetFooter className={"w-full hidden"}>
                     <CustomButton className={`w-full`}>
                       <Link href={"/buy-acces"}>Buy Acces</Link>
                     </CustomButton>

@@ -103,3 +103,41 @@
     2% 20%
   );
 }
+
+/* Exchange listing countdown styles */
+.countdown-card-lbank {
+  background: linear-gradient(135deg, #1B4F9C20, #2E5DB810);
+}
+
+.countdown-card-bitmart {
+  background: linear-gradient(135deg, #00D4AA20, #00B89A10);
+}
+
+.countdown-text-lbank {
+  color: #1B4F9C;
+}
+
+.countdown-text-bitmart {
+  color: #00D4AA;
+}
+
+.countdown-card-bingx {
+  background: linear-gradient(135deg, #2A54FE20, #2952F710);
+}
+
+.countdown-card-mexc {
+  background: linear-gradient(135deg, #3156AA20, #1972E210);
+}
+
+.countdown-text-bingx {
+  color: #2A54FE;
+}
+
+.countdown-text-mexc {
+  color: #3156AA;
+}
+
+/* Exchange logo visibility enhancements */
+.logo-bingx {
+  filter: brightness(0) saturate(100%) invert(30%) sepia(95%) saturate(2500%) hue-rotate(220deg) brightness(100%) contrast(105%);
+}
